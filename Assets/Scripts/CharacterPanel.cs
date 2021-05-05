@@ -15,10 +15,14 @@ public class CharacterPanel : MonoBehaviour
     {
         manager = FindObjectOfType<SpriteManager>();
         int count = manager.GetAllSprites().Length;
+        var resMgr = FindObjectOfType<ResourceManager>();
         for(int i = 0; i < count; i++)
         {
             GameObject item = Instantiate<GameObject>(spriteItemPrefab);
             item.transform.SetParent(contentNode, false);
+            var img = item.GetComponentInChildren<RawImage>();
+            var tex = resMgr.GetCharacterImage(i);
+            img.texture = tex;
             int index = i;
             item.GetComponent<Button>().onClick.AddListener(()=>{
                 manager.SelectSprite(index);

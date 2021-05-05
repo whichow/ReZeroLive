@@ -6,22 +6,28 @@ public class CustomSprite : MonoBehaviour
 {
     private string[] animationNames;
     private string[] voiceNames;
-    private SkeletonAnimation skAnime;
+    private SkeletonAnimation skAnim;
+    private int curAnimIndex;
 
     void Awake()
     {
-        skAnime = gameObject.GetComponent<SkeletonAnimation>();
+        skAnim = gameObject.GetComponent<SkeletonAnimation>();
         animationNames = GetAllAnimNames();
         GetComponentInChildren<HotArea>().onTouch.AddListener(()=>{
             RandomPlay();
         });
+        skAnim.state.Complete += (trackEntry)=>{
+            PlayIdle();
+        };
     }
 
     public void PlayAnimation(int animeIndex)
     {
-        if(animeIndex < animationNames.Length - 1)
+        if(animeIndex < animationNames.Length)
         {
-            skAnime.AnimationName = animationNames[animeIndex];
+            skAnim.AnimationName = animationNames[animeIndex];
+            curAnimIndex = animeIndex;
+            Debug.Log("Play anime: " + skAnim.AnimationName);
         }
     }
 
@@ -40,10 +46,22 @@ public class CustomSprite : MonoBehaviour
 
     }
 
+    public void PlayIdle()
+    {
+        PlayAnimation(0);
+    }
+
     public void RandomPlay()
     {
-        int animeIndex = Random.Range(0, animationNames.Length);
-        PlayAnimation(animeIndex);
+        int animeIndex = Random.Range(1, animationNames.Length);
+        if(animeIndex == curAnimIndex)
+        {
+            RandomPlay();
+        }
+        else
+        {
+            PlayAnimation(animeIndex);
+        }
         // int voiceIndex = GetVoiceByAnime(animeIndex);
         // if(voiceIndex < voiceNames.Length)
         // {
@@ -64,7 +82,7 @@ public class CustomSprite : MonoBehaviour
     private string[] GetAllAnimNames()
     {
         List<string> names = new List<string>();
-        var anims = skAnime.Skeleton.Data.Animations;
+        var anims = skAnim.Skeleton.Data.Animations;
         anims.ForEach((a)=>{
             var sp = a.Name.Split('_');
             int result;

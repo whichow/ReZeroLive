@@ -34,7 +34,7 @@ public class SpriteManager : MonoBehaviour
     
     public CustomSprite GetSprite(int index)
     {
-        if(index < sprites.Length - 1)
+        if(index < sprites.Length)
         {
             return sprites[index];
         }
@@ -43,7 +43,7 @@ public class SpriteManager : MonoBehaviour
 
     public void SelectSprite(int index)
     {
-        if(index <= sprites.Length - 1)
+        if(index < sprites.Length)
         {
             var sprite = sprites[index];
             if(currentSprite != null)

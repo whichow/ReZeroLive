@@ -1,7 +1,9 @@
 Logs/
 Temp/
 Library/
+obj/
 *.sln
 *.csproj
 *.unitypackage
+*.apk
 .vscode
