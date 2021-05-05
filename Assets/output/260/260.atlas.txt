@@ -1,0 +1,118 @@
+
+260.png
+size: 2048,2048
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: none
+body
+  rotate: false
+  xy: 1, 938
+  size: 1310, 1074
+  orig: 1310, 1074
+  offset: 0, 0
+  index: -1
+ear_l
+  rotate: true
+  xy: 1, 241
+  size: 259, 784
+  orig: 259, 784
+  offset: 0, 0
+  index: -1
+ear_r
+  rotate: false
+  xy: 1792, 1220
+  size: 193, 792
+  orig: 193, 792
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 196, 569
+  size: 84, 112
+  orig: 84, 112
+  offset: 0, 0
+  index: -1
+eye_close
+  rotate: false
+  xy: 102, 563
+  size: 92, 118
+  orig: 92, 118
+  offset: 0, 0
+  index: -1
+eye_happy
+  rotate: false
+  xy: 282, 573
+  size: 73, 108
+  orig: 73, 108
+  offset: 0, 0
+  index: -1
+eyeball
+  rotate: false
+  xy: 160, 523
+  size: 25, 38
+  orig: 25, 38
+  offset: 0, 0
+  index: -1
+eyelid
+  rotate: false
+  xy: 102, 502
+  size: 56, 59
+  orig: 56, 59
+  offset: 0, 0
+  index: -1
+eyelid_anger
+  rotate: false
+  xy: 1, 557
+  size: 99, 124
+  orig: 99, 124
+  offset: 0, 0
+  index: -1
+face
+  rotate: false
+  xy: 1312, 1204
+  size: 478, 777
+  orig: 478, 777
+  offset: 0, 0
+  index: -1
+head_armer
+  rotate: true
+  xy: 787, 304
+  size: 196, 372
+  orig: 196, 372
+  offset: 0, 0
+  index: -1
+mouth_close
+  rotate: true
+  xy: 609, 502
+  size: 435, 671
+  orig: 435, 671
+  offset: 0, 0
+  index: -1
+mouth_open
+  rotate: true
+  xy: 1313, 783
+  size: 419, 699
+  orig: 419, 699
+  offset: 0, 0
+  index: -1
+pileum
+  rotate: true
+  xy: 1644, 463
+  size: 318, 355
+  orig: 318, 355
+  offset: 0, 0
+  index: -1
+rein_l
+  rotate: true
+  xy: 1, 683
+  size: 253, 478
+  orig: 253, 478
+  offset: 0, 0
+  index: -1
+rein_r
+  rotate: false
+  xy: 1282, 287
+  size: 360, 494
+  orig: 360, 494
+  offset: 0, 0
+  index: -1

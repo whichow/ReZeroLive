@@ -1,0 +1,35 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CharacterPanel : MonoBehaviour
+{
+    public Transform contentNode;
+    public GameObject spriteItemPrefab;
+
+    private SpriteManager manager;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        manager = FindObjectOfType<SpriteManager>();
+        int count = manager.GetAllSprites().Length;
+        for(int i = 0; i < count; i++)
+        {
+            GameObject item = Instantiate<GameObject>(spriteItemPrefab);
+            item.transform.SetParent(contentNode, false);
+            int index = i;
+            item.GetComponent<Button>().onClick.AddListener(()=>{
+                manager.SelectSprite(index);
+                gameObject.SetActive(false);
+            });
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
