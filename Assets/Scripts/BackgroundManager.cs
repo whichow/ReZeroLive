@@ -4,23 +4,8 @@ using UnityEngine;
 
 public class BackgroundManager : MonoBehaviour
 {
-    public GameObject[] backgrounds;
-    public bool getBackgroundsInChildren;
-    private GameObject currentBackground;
-    
-    void Awake()
-    {
-        if(getBackgroundsInChildren)
-        {
-            List<GameObject> gos = new List<GameObject>();
-            foreach(Transform trans in transform)
-            {
-                GameObject go = trans.gameObject;
-                gos.Add(go);
-            }
-            backgrounds = gos.ToArray();
-        }
-    }
+    public Texture[] bgImages;
+    public Material bgMat;
 
     void Start()
     {
@@ -29,15 +14,9 @@ public class BackgroundManager : MonoBehaviour
 
     public void SelectBackground(int index)
     {
-        if(index <= backgrounds.Length - 1)
+        if(index < bgImages.Length)
         {
-            var background = backgrounds[index];
-            if(currentBackground != null)
-            {
-                currentBackground.SetActive(false);
-            }
-            currentBackground = background;
-            currentBackground.SetActive(true);
+            bgMat.mainTexture = bgImages[index];
         }
     }
 }
