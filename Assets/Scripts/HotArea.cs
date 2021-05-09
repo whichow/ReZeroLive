@@ -10,6 +10,9 @@ public class HotArea : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("On mouse down");
-        onTouch.Invoke();
+        if(!GlobalSettings.IsShowingPanel)
+        {
+            onTouch.Invoke();
+        }
     }
 }

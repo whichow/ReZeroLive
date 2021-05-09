@@ -31,9 +31,13 @@ public class BackgroundPanel : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        
+        GlobalSettings.IsShowingPanel = true;
+    }
+
+    void OnDisable()
+    {
+        GlobalSettings.IsShowingPanel = false;
     }
 }
