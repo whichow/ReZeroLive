@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PhotoCamera : MonoBehaviour
 {
+    void Update()
+    {
+        GlobalSettings.IsShowingPanel = true;
+    }
+
     public void TakePhoto()
     {
         CameraCapture(GetComponent<Camera>(), new Rect(0, 0, Screen.width, Screen.height), System.DateTime.Now.ToString("yyyyMMddHHmmss") + ".png");

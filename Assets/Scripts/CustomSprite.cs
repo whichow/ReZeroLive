@@ -5,13 +5,14 @@ using UnityEngine;
 public class CustomSprite : MonoBehaviour
 {
     private string[] animationNames;
-    private string[] voiceNames;
     private SkeletonAnimation skAnim;
     private int curAnimIndex;
+    private VoicePlayer voicePlayer;
 
     void Awake()
     {
         skAnim = gameObject.GetComponent<SkeletonAnimation>();
+        voicePlayer = gameObject.GetComponent<VoicePlayer>();
         animationNames = GetAllAnimNames();
         GetComponentInChildren<HotArea>().onTouch.AddListener(()=>{
             RandomPlay();
@@ -38,7 +39,7 @@ public class CustomSprite : MonoBehaviour
 
     public void PlayVoice(int voiceIndex)
     {
-
+        voicePlayer.Play(voiceIndex);
     }
 
     public void StopVoice()
@@ -61,17 +62,14 @@ public class CustomSprite : MonoBehaviour
         else
         {
             PlayAnimation(animeIndex);
+            int voiceIndex = GetVoiceByAnime(animeIndex);
+            PlayVoice(voiceIndex);
         }
-        // int voiceIndex = GetVoiceByAnime(animeIndex);
-        // if(voiceIndex < voiceNames.Length)
-        // {
-        //     PlayVoice(voiceIndex);
-        // }
     }
 
     public int GetVoiceByAnime(int animeIndex)
     {
-        return 0;
+        return animeIndex - 1;
     }
 
     public void Activate(bool activate)
@@ -79,20 +77,25 @@ public class CustomSprite : MonoBehaviour
         gameObject.SetActive(activate);
     }
 
-    private string[] GetAllAnimNames()
+    public string[] GetAllAnimNames()
     {
-        List<string> names = new List<string>();
-        var anims = skAnim.Skeleton.Data.Animations;
-        anims.ForEach((a)=>{
-            var sp = a.Name.Split('_');
-            int result;
-            int.TryParse(sp[0], out result);
-            if(sp.Length == 2 && result != 0)
-            {
-                names.Add(a.Name);
-                Debug.Log(a.Name);
-            }
-        });
-        return names.ToArray();
+        if(animationNames == null)
+        {
+            List<string> names = new List<string>();
+            var anims = skAnim.Skeleton.Data.Animations;
+            anims.ForEach((a)=>{
+                var sp = a.Name.Split('_');
+                int result;
+                int.TryParse(sp[0], out result);
+                if(sp.Length == 2 && result != 0)
+                {
+                    names.Add(a.Name);
+                    Debug.Log(a.Name);
+                }
+            });
+            animationNames = names.ToArray();
+        }
+
+        return animationNames;
     }
 }

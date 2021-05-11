@@ -41,6 +41,11 @@ public class SpriteManager : MonoBehaviour
         return null;
     }
 
+    public CustomSprite GetCurrentSprite()
+    {
+        return currentSprite;
+    }
+
     public void SelectSprite(int index)
     {
         if(index < sprites.Length)
