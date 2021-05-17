@@ -7,9 +7,12 @@ public class SpriteManager : MonoBehaviour
     public CustomSprite[] sprites;
     public bool getSpritesInChildren;
     private CustomSprite currentSprite;
+    private BackgroundManager bgMgr;
 
     void Awake()
     {
+        bgMgr = FindObjectOfType<BackgroundManager>();
+        
         if(getSpritesInChildren)
         {
             List<CustomSprite> sps = new List<CustomSprite>();
@@ -50,6 +53,14 @@ public class SpriteManager : MonoBehaviour
     {
         if(index < sprites.Length)
         {
+            if(index == 15 || index == 22)
+            {
+                bgMgr.SelectSpecialBackground(0);
+            }
+            else
+            {
+                bgMgr.ResetToNomalBackground();
+            }
             var sprite = sprites[index];
             if(currentSprite != null)
             {
