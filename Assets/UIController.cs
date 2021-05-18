@@ -7,37 +7,79 @@ public class UIController : MonoBehaviour
 {
     public GameObject uiPanel;
 
-#if UNITY_ANDROID && !UNITY_EDITOR
-    void Start()
+    private bool _isPreview;
+    private bool _isUnityPlayer;
+
+#if UNITY_ANDROID
+    public void PreviewWallpaper()
     {
-        if(LiveWallpaper.IsPreview)
-        {
-			uiPanel.SetActive(true);
-		}
-		else
-		{
-			uiPanel.SetActive(false);
-		}
+        LiveWallpaper.OpenPreviewScreen();
     }
+
+    // void Start()
+    // {
+    //     if(LiveWallpaper.IsPreview)
+    //     {
+	// 		uiPanel.SetActive(true);
+	// 	}
+	// 	else
+	// 	{
+	// 		uiPanel.SetActive(false);
+	// 	}
+    // }
 
 	void OnEnable() {
 		LiveWallpaper.IsPreviewChanged += OnPreviewChanged;
+        LiveWallpaper.CustomEventReceived += OnCustomEventReceived;
 	}
 
 	void OnDisable() {
 		LiveWallpaper.IsPreviewChanged -= OnPreviewChanged;
+        LiveWallpaper.CustomEventReceived -= OnCustomEventReceived;
 	}
 
 	private void OnPreviewChanged(bool isPreview)
 	{
-		if(isPreview)
-		{
-			uiPanel.SetActive(true);
-		}
-		else
-		{
-			uiPanel.SetActive(false);
-		}
+        Debug.Log("OnPreviewChanged: " + isPreview);
+        // _isPreview = isPreview;
+		// if(isPreview)
+		// {
+		// 	uiPanel.SetActive(false);
+		// }
+		// else if(_isUnityPlayer)
+		// {
+		// 	uiPanel.SetActive(true);
+		// }
 	}
+
+    private void OnCustomEventReceived(string eventName, string eventData)
+    {
+        Debug.Log("OnCustomEventReceived: " + eventName);
+        // if(eventName == "UnityPlayerResumed")
+        // {
+        //     _isUnityPlayer = true;
+        //     if(_isPreview)
+        //     {
+        //         uiPanel.SetActive(false);
+        //     }
+        //     else
+        //     {
+        //         uiPanel.SetActive(true);
+        //     }
+        // }
+        // if(eventName == "UnityPlayerPaused")
+        // {
+        //     _isUnityPlayer = false;
+        //     uiPanel.SetActive(false);
+        // }
+        if(eventName == "UnityActivityOnResume")
+        {
+            uiPanel.SetActive(true);
+        }
+        if(eventName == "UnityActivityOnStop")
+        {
+            uiPanel.SetActive(false);
+        }
+    }
 #endif
 }
