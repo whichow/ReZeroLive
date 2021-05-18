@@ -53,7 +53,7 @@ public class SpriteManager : MonoBehaviour
     {
         if(index < sprites.Length)
         {
-            if(index == 15 || index == 22)
+            if(index == 15 || index == 22 || index == 24)
             {
                 bgMgr.SelectSpecialBackground(0);
             }
