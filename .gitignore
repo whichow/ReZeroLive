@@ -1,7 +1,6 @@
 Logs/
 Temp/
 Library/
-Android/
 obj/
 *.sln
 *.csproj
