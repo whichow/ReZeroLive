@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Splash.unity
+    guid: 2165616a226d198478023841190ff3c3
   - enabled: 1
     path: Assets/Spine Sprites.unity
     guid: 9d2b073eb0562a6438e11fc6a0337399
