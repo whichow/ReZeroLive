@@ -1,9 +1,13 @@
 package com.rezero.live;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.lostpolygon.unity.livewallpaper.activities.LiveWallpaperCompatibleUnityPlayerActivity;
@@ -16,15 +20,26 @@ public class UnityPlayerActivity extends LiveWallpaperCompatibleUnityPlayerActiv
         super.onCreate(savedInstanceState);
 
         ImageView splashView = new ImageView(this);
-        int splash = getResources().getIdentifier("splash", "drawable", getPackageName());
-        splashView.setBackgroundResource(splash);
-        addContentView(splashView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        int splash = getResources().getIdentifier("splash_normal", "drawable", getPackageName());
+        splashView.setImageResource(splash);
+        splashView.setScaleType(ImageView.ScaleType.FIT_XY);
+        splashView.setAdjustViewBounds(true);
+
+        FrameLayout.LayoutParams frameLayoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        frameLayoutParams.gravity = Gravity.BOTTOM;
+
+        FrameLayout frameLayout = new FrameLayout(this);
+        frameLayout.setBackgroundColor(Color.WHITE);
+        frameLayout.addView(splashView, frameLayoutParams);
+
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        addContentView(frameLayout, layoutParams);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ((ViewGroup)splashView.getParent()).removeView(splashView);
+                ((ViewGroup)frameLayout.getParent()).removeView(frameLayout);
             }
         }, SPLASH_DISPLAY_LENGHT);
     }
