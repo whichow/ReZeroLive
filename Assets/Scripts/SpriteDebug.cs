@@ -23,7 +23,7 @@ public class SpriteDebug : MonoBehaviour
         if(GUILayout.Button("<"))
         {
             var sprite = manager.GetCurrentSprite();
-            if(--animeIndex == 0)
+            if(--animeIndex <= 0)
             {
                 animeIndex = sprite.GetAllAnimNames().Length - 1;
             }
@@ -32,7 +32,7 @@ public class SpriteDebug : MonoBehaviour
         if(GUILayout.Button(">"))
         {
             var sprite = manager.GetCurrentSprite();
-            if(++animeIndex == sprite.GetAllAnimNames().Length)
+            if(++animeIndex >= sprite.GetAllAnimNames().Length)
             {
                 animeIndex = 0;
             }

@@ -22,13 +22,14 @@ public class CustomSprite : MonoBehaviour
         };
     }
 
-    public void PlayAnimation(int animeIndex)
+    public void PlayAnimation(int animIndex)
     {
-        if(animeIndex < animationNames.Length)
+        Debug.Log("Anim index: " + animIndex);
+        if(animIndex >= 0 && animIndex < animationNames.Length)
         {
-            skAnim.AnimationName = animationNames[animeIndex];
-            curAnimIndex = animeIndex;
-            Debug.Log("Play anime: " + skAnim.AnimationName);
+            skAnim.AnimationName = animationNames[animIndex];
+            curAnimIndex = animIndex;
+            Debug.Log("Play anim: " + skAnim.AnimationName);
         }
     }
 
