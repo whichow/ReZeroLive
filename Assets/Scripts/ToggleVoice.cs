@@ -13,6 +13,7 @@ public class ToggleVoice : MonoBehaviour
     {
         toggleButton = GetComponent<Button>();
         buttonText = GetComponentInChildren<Text>();
+        buttonText.text = GlobalSettings.PlayVoice ? "声音开" : "声音关";
         toggleButton.onClick.AddListener(()=>{
             GlobalSettings.PlayVoice = !GlobalSettings.PlayVoice;
             buttonText.text = GlobalSettings.PlayVoice ? "声音开" : "声音关";

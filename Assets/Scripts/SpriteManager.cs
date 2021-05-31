@@ -27,7 +27,7 @@ public class SpriteManager : MonoBehaviour
 
     void Start()
     {
-        SelectSprite(0);
+        SelectSprite(GlobalSettings.SpriteIndex);
     }
 
     public CustomSprite[] GetAllSprites()
@@ -69,6 +69,8 @@ public class SpriteManager : MonoBehaviour
             currentSprite = sprite;
             currentSprite.Activate(true);
             currentSprite.PlayAnimation(0);
+
+            GlobalSettings.SpriteIndex = index;
         }
     }
 }

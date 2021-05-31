@@ -10,7 +10,13 @@ public class UIController : MonoBehaviour
     private bool _isPreview;
     private bool _isUnityPlayer;
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
+
+    void Awake()
+    {
+        uiPanel.SetActive(false);
+    }
+
     public void PreviewWallpaper()
     {
         LiveWallpaper.OpenPreviewScreen();
@@ -76,7 +82,7 @@ public class UIController : MonoBehaviour
         {
             uiPanel.SetActive(true);
         }
-        if(eventName == "UnityActivityOnStop")
+        if(eventName == "UnityActivityOnPause")
         {
             uiPanel.SetActive(false);
         }

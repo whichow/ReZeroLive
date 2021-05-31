@@ -8,11 +8,11 @@ public class BackgroundManager : MonoBehaviour
     public Texture[] specBgImages;
     public Material bgMat;
 
-    private int bgIndex;
+    // private int bgIndex;
 
     void Start()
     {
-        SelectBackground(0);
+        // SelectBackground(GlobalSettings.BgIndex);
     }
 
     public void SelectBackground(int index)
@@ -20,7 +20,7 @@ public class BackgroundManager : MonoBehaviour
         if(index < bgImages.Length)
         {
             bgMat.mainTexture = bgImages[index];
-            bgIndex = index;
+            GlobalSettings.BgIndex = index;
         }
     }
 
@@ -34,6 +34,6 @@ public class BackgroundManager : MonoBehaviour
 
     public void ResetToNomalBackground()
     {
-        SelectBackground(bgIndex);
+        SelectBackground(GlobalSettings.BgIndex);
     }
 }
