@@ -5,8 +5,10 @@ using UnityEngine;
 public class SpriteManager : MonoBehaviour
 {
     public CustomSprite[] sprites;
+    public CustomSpriteGroup[] spriteGroups;
     public bool getSpritesInChildren;
     private CustomSprite currentSprite;
+    private CustomSpriteGroup currentspriteGroup;
     private BackgroundManager bgMgr;
 
     void Awake()
@@ -27,12 +29,19 @@ public class SpriteManager : MonoBehaviour
 
     void Start()
     {
-        SelectSprite(GlobalSettings.SpriteIndex);
+        if(!GlobalSettings.IsSpriteGroup)
+        {
+            SelectSprite(GlobalSettings.SpriteIndex);
+        }
+        else
+        {
+            SelectSpriteGroup(GlobalSettings.SpriteGroupIndex);
+        }
     }
 
-    public CustomSprite[] GetAllSprites()
+    public CustomSpriteGroup[] GetAllSpriteGroups()
     {
-        return sprites;
+        return spriteGroups;
     }
     
     public CustomSprite GetSprite(int index)
@@ -66,11 +75,42 @@ public class SpriteManager : MonoBehaviour
             {
                 currentSprite.Activate(false);
             }
+            if(currentspriteGroup != null)
+            {
+                currentspriteGroup.Activate(false);
+            }
             currentSprite = sprite;
             currentSprite.Activate(true);
-            currentSprite.PlayAnimation(0);
 
             GlobalSettings.SpriteIndex = index;
         }
+    }
+
+    public void SelectSpriteGroup(int index)
+    {
+        if(index < spriteGroups.Length)
+        {
+            if(index == 1)
+            {
+                bgMgr.SelectSpecialBackground(0);
+            }
+            else
+            {
+                bgMgr.ResetToNomalBackground();
+            }
+        }
+        var spriteGroup = spriteGroups[index];
+        if(currentSprite != null)
+        {
+            currentSprite.Activate(false);
+        }
+        if(currentspriteGroup != null)
+        {
+            currentspriteGroup.Activate(false);
+        }
+        currentspriteGroup = spriteGroup;
+        currentspriteGroup.Activate(true);
+
+        GlobalSettings.SpriteGroupIndex = index;
     }
 }

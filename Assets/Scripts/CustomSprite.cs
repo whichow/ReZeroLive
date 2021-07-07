@@ -22,6 +22,16 @@ public class CustomSprite : MonoBehaviour
         };
     }
 
+    void OnEnable()
+    {
+        PlayAnimation(0);
+    }
+
+    public void Activate(bool activate)
+    {
+        gameObject.SetActive(activate);
+    }
+
     public void PlayAnimation(int animIndex)
     {
         Debug.Log("Anim index: " + animIndex);
@@ -71,11 +81,6 @@ public class CustomSprite : MonoBehaviour
     public int GetVoiceByAnime(int animeIndex)
     {
         return animeIndex - 1;
-    }
-
-    public void Activate(bool activate)
-    {
-        gameObject.SetActive(activate);
     }
 
     public string[] GetAllAnimNames()

@@ -14,7 +14,7 @@ public class CharacterPanel : MonoBehaviour
     void Start()
     {
         manager = FindObjectOfType<SpriteManager>();
-        int count = manager.GetAllSprites().Length;
+        int count = manager.sprites.Length + manager.spriteGroups.Length;
         var resMgr = FindObjectOfType<ResourceManager>();
         for(int i = 0; i < count; i++)
         {
@@ -25,7 +25,14 @@ public class CharacterPanel : MonoBehaviour
             img.texture = tex;
             int index = i;
             item.GetComponent<Button>().onClick.AddListener(()=>{
-                manager.SelectSprite(index);
+                if(index < manager.sprites.Length) 
+                {
+                    manager.SelectSprite(index);
+                }
+                else
+                {
+                    manager.SelectSpriteGroup(index - manager.sprites.Length);
+                }
                 gameObject.SetActive(false);
             });
         }
